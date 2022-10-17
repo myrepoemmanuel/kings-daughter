@@ -1,0 +1,295 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    
+    <section class="pg-cont main-container">
+
+        <div class="author_intro">
+            {% for info in welcome_info %}
+            <div class="intro_text">
+                <img src="{{info.TitleImage}}" alt="">
+                <h2>
+                    {{info.description}}
+                </h2>
+                <a href="{% url 'about' %}">Get To Know More</a>
+            </div>
+
+            <div class="intro_images">
+                <span>
+                    <div>
+                        <img src="{{info.OwnerImage}}" alt="">
+                    </div>
+                    <div>
+                        <img src="{{info.SecondOwnerImage}}" alt="">
+                    </div>
+                    <div>
+                        <img src="{{info.ThirdOwnerImage}}" alt="">
+                    </div>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="categories">
+            <a href="{% url 'blog_category_page' 'scripture' %}">
+                Scripture
+            </a>
+
+            <a href="{% url 'blog_category_page' 'life' %}">
+                Life
+            </a>
+
+            <a href="{% url 'blog_category_page' 'health' %}">
+                Health
+            </a>
+
+            <a href="{% url 'blog_category_page' 'fashion' %}">
+                Fashion
+            </a>
+
+            <a href="{% url 'blog_category_page' 'beauty' %}">
+                Beauty
+            </a>
+        </div>
+
+        <div id="section_3" class="start_here">
+            <h1>Where To Start</h1>
+            <p>Try out the Following</p>
+            <div class="welcomers">
+                {% for card in welcome_intro %}
+                    <div class="welcomers_card">
+                        <span>
+                            {{card.id}}<sup>{{card.Indexer}}</sup>
+                        </span>
+                        <span>
+                            <img src="{{ card.ImageUrl }}" alt="">
+                        </span>
+                        <span>
+                            <p class="link">
+                                <a href="{% url 'blog' %}">{{card.title}}</a>
+                            </p>
+                        </span>
+                        <span>
+                            {{ card.description|slice:"95" }}
+                        </span>
+                        <span class="btn">
+                            <a href="{% url 'blog' %}">Read On</a>
+                        </span>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+        <div id="section_4" class="main_newsletter">
+            <div class="main_newsletter_image">
+                <img src="{% static 'img/newsletter.jpg' %}" alt="">
+            </div>
+            <form id="form" class="form">
+                <h1>Want more Goodies?</h1>
+                <h4>Subscribe to get updates</h4>
+                <input type="text" name="username" placeholder="Your name">
+                <input type="text" name="email" placeholder="Your email address">
+                <input id="join-list" type="submit" value="Join">
+            </form>
+        </div>
+
+        <div id="section_5" class="start_here">
+            <h1>What's New Here</h1>
+            <p>Grab Your Coffee and Get Started</p>
+            <div class="welcomers">
+                <div class="welcomers_card">
+                    
+                    <span>
+                        <img src="{% static 'img/health_dish.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p class="link">
+                            <a href="{% url 'blog' %}">Healthy eating</a>
+                        </p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe ajdss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">learn more</a>
+                    </span>
+                </div>
+
+                <div class="welcomers_card">
+                    
+                    <span>
+                        <img src="{% static 'img/fashion.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p class="link">
+                            <a href="{% url 'blog' %}">Dressing today</a>
+                        </p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe ajdss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">learn more</a>
+                    </span>
+                </div>
+
+                <div class="welcomers_card">
+                    
+                    <span>
+                        <img src="{% static 'img/phone_podcast.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p class="link">
+                            <a href="{% url 'blog' %}">christ our savior</a>
+                        </p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe adss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">Learn More</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_6" class="main_newsletter">
+            
+            <div>
+                <h1>Our Daily Plan</h1>
+                <h4>This is designed to help you incorporate self-care, mindfulness, and intentional living into your day</h4>
+                <ul>
+                    <li><h3>Set intentional goals and track your daily habits</h3></li>
+                    <li><h3>Make self-care a priority by tracking your mind, body, and soul routine</h3>
+                    <li><h3>Improve your mindset with intentions, affirmations, and daily gratitude</h3>
+                </ul>
+                <a type="submit" value="Join">Download Yours</a>
+            </div>
+
+            <div class="main_newsletter_image">
+                <img src="{% static 'img/black_cup.jpg' %}" alt="">
+            </div>
+        </div>
+
+        <div id="section_7" class="start_here">
+            <h1>Visit our Shop</h1>
+            <p>Get the best of all</p>
+            <div class="welcomers">
+                <div class="welcomers_card">
+                    <span>
+                        The Oscovandal brent
+                    </span>
+                    <span>
+                        <img src="{% static 'img/scrabble_blog.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p>$10</p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe ajdss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">Buy Now</a>
+                    </span>
+                </div>
+
+                <div class="welcomers_card">
+                    <span>
+                        balance guide
+                    </span>
+                    <span>
+                        <img src="{% static 'img/join_list.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p>$5</p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe ajdss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">Buy Now</a>
+                    </span>
+                </div>
+
+                <div class="welcomers_card">
+                    <span>
+                        Walking with christ
+                    </span>
+                    <span>
+                        <img src="{% static 'img/podcast.jpg' %}" alt="">
+                    </span>
+                    <span>
+                        <p>$15</p>
+                    </span>
+                    <span>
+                        Some Text sdsd adcd fasdsa asda dkwjwe adss
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss 
+                        ome Text sdsd adcd fasdsa asda dkwjwe ajdss
+                    </span>
+                    <span class="btn">
+                        <a href="">Buy Now</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+
+    var form = document.getElementById('form')
+    
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+    })
+
+    document.getElementById('join-list').addEventListener('click', function(e){
+        submitFormData()
+    })
+    function submitFormData(){
+        var SubscriberData = {
+            'name': form.username.value,
+            'email': form.email.value,
+        }
+        
+        
+        var url = '/process_subscriber/';
+
+                fetch(url, {
+                    method:'POST',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body:JSON.stringify({'SubscriberData': SubscriberData,})
+
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('success:',data);
+                    alert('Subscribed Successfully');
+                    form.username.value = "";
+                    form.email.value = "";
+                    
+                })
+        
+        
+    }
+
+
+    </script>
+{% endblock %}

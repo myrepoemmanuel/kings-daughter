@@ -1,0 +1,313 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+        
+        {% if title %}
+        <title>
+            {{ title }}
+        </title>
+        {% else %}
+        <title>
+            The King's Daughter
+        </title>
+
+        <link rel="icon" href ="{% static 'img/crown.ico'%}" 
+        type="image/x-icon">
+        {% endif %}
+        
+        <meta name="description" content="Get the best inspiration">
+        <meta name="author" content="Abundance">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+                let user = '{{request.user}}';
+                
+                function getToken(name){
+                        let cookieValue = null;
+                        if (document.cookie && document.cookie !== ''){
+                            const cookies = document.cookie.split(';');
+                            for (let i = 0; i < cookies.length; i++){
+                                const cookie = cookies[i].trim();
+                                if (cookie.substring(0 , name.length + 1) === (name + '=')){
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                }
+                const csrftoken = getToken('csrftoken')
+
+                function getCookie(name){
+                    // Split cookie string and get all individual name=value pairs in an array
+                    var cookieArr = document.cookie.split(";");
+
+                    // loop through the array elements
+                    for(let i=0; i < cookieArr.length; i++){
+                        let cookiePair = cookieArr[i].split("=");
+
+                        /*removing whitespace at the begining of cookie name and 
+                        compare it with given string*/
+                        if (name == cookiePair[0].trim()){
+                            //decode cookie value and return
+                            return decodeURIComponent(cookiePair[1]);
+                        }
+
+                    }
+
+                    //return null if not found
+                    return null;
+                }
+                var cart = JSON.parse(getCookie('cart'));
+                var cart_no = JSON.parse(getCookie('cartno'))
+
+                // set the cookie if it's not there
+
+                if (cart == undefined){
+                    cart = {}
+                    console.log('cart created!', cart);
+                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+                }
+                if (cart_no == undefined){
+                    cart_no = {}
+                    console.log('cart_no created!', cart_no);
+                    document.cookie = 'cartno=' + JSON.stringify(cart_no) + ";domain=;path=/";
+                }
+                console.log("cart:",cart);
+            
+        </script>
+
+    </head>
+    <body>
+    
+    <header>
+            
+            <div class="page_intro">
+
+                <div id="menu_buttons">
+                    <a href="#" onclick="openNav()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+                <div id="blog_name">
+                    <h1><a href="{% url 'index' %}">The King's Daughter</a></h1>
+                </div>
+                <div class="social_icons">
+                    <img style="background: black; border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-facebook-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-twitter-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-instagram-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-pinterest-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-search-100.png' %}" alt="">
+                </div>
+
+            </div>
+            
+            <ul id="navigation">
+
+                <li id="logoname" class="hide">
+                    <a href="{% url 'index' %}">TKD</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'blog' %}">Blog</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'resources' %}">Resources</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'contact' %}">Contact us</a>
+                </li>
+                
+                <li class="cart-icon">
+                        <a href="{% url 'shop' %}">shop</a>
+                        <p class="cart-num"><span>{{cartItems}}</span></p>
+                </li>
+
+
+                
+                
+
+
+
+                
+
+            </ul>
+                
+            <div id="myNav" class="overlay">
+
+                            <!-- Button to close the overlay navigation -->
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+                            <!-- Overlay content -->
+                            <div class="overlay-content">
+
+                                <a href="{% url 'index' %}">Home</a>
+
+                                <a href="{% url 'blog' %}">Blog</a>
+                                
+                                <a href="{% url 'about' %}">About</a>
+
+                                <a href="{% url 'resources' %}">Resources</a>
+                                
+                                <a href="{% url 'contact' %}">Contact Us</a>
+                                
+                                <a href="{% url 'shop' %}">Shop</a>
+
+                                <!--<a href="#">Profile</a>-->
+                            </div>
+
+            </div>                        
+                        
+            <script>
+                function openNav() {
+                    document.getElementById("myNav").style.width = "100%";
+                }
+
+                function closeNav() {
+                    document.getElementById("myNav").style.width = "0%";
+                }
+            </script>
+
+    </header>
+
+    
+            
+            {% if messages %}
+            <div class="success-msg">
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+            </div>
+            {% endif %}
+        
+            
+        
+        
+        {% block content %}
+        
+        
+
+        {% endblock %}
+
+        <section class="footer">
+            <div class="child-1">
+                <div class="sec_1">
+                    <span class="search_box">
+                        <h4>Search</h4>
+                        <form action="" method="get">
+                            <input type="text" placeholder="search here">
+                            <button style="display: grid; place-items: center; padding: 0 5px; border: none; outline: none; background: none;">
+                                <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-search-100.png' %}" alt="">
+                            </button>
+                        </form>
+                    </span>
+                    <span class="privacy">
+                        <h4>privacy</h4>
+                        <div>
+                            <a href="">Terms &amp; Conditions</a>
+                            <a href="">Privacy Policy</a>
+                        </div>
+                    </span>
+                </div>
+
+                <div>
+                    <span class="footer_menu">
+                        <h4>Menu</h4>
+                        <div>
+                            <a href="{% url 'index' %}">Home</a>
+                            <a href="{% url 'blog' %}">Blog</a>
+                            <a href="{% url 'about' %}">About</a>
+                            <a href="{% url 'resources' %}">Resources</a>
+                            <a href="{% url 'contact' %}">Contact us</a>
+                            <a href="{% url 'shop' %}">Shop</a>
+                        </div>
+                    </span>
+                </div>
+                <div>
+                    <span class="footer_gallery">
+                        <h4>Gallery</h4>
+                        <div>
+                            <a href="">
+                                <img src="{% static 'img/julio_cyp.webp' %}" alt="">
+                            </a>
+
+                            <a href="">
+                                <img src="{% static 'img/juliet.jpg' %}" alt="">
+                            </a>
+
+                            <a href="">
+                                <img src="{% static 'img/aba.jpg' %}" alt="">
+                            </a>
+
+                            <a href="">
+                                <img src="{% static 'img/classy_fash.jpg' %}" alt="">
+                            </a>
+
+                            <a href="">
+                                <img src="{% static 'img/scripture.jpg' %}" alt="">
+                            </a>
+
+                            <a href="">
+                                <img src="{% static 'img/health_dish.jpg' %}" alt="">
+                            </a>
+                        </div>
+                    </span>
+                </div>
+                
+            </div>
+
+            <div class="random_child">
+                <a class="gallery_link" href="">
+                    <img src="{% static 'img/icons8-instagram-100.png' %}" alt="">
+                    <p>follow @Theking'sDaughter</p>
+                </a>
+            </div>
+
+            <div class="child-2">
+                <div class="acknowledgement">
+                    <a target="_blank" href="https://icons8.com">All icons by Icons8</a>
+                </div>
+
+                <div id="footer_social_icons" class="social_icons">
+                    <a href=""><img src="{% static 'img/icons8-facebook-100.png' %}" alt=""></a>
+                    <a href=""><img src="{% static 'img/icons8-twitter-100.png' %}" alt=""></a>
+                    <a href=""><img src="{% static 'img/icons8-instagram-100.png' %}" alt=""></a>
+                    <a href=""><img src="{% static 'img/icons8-pinterest-100.png' %}" alt=""></a>
+                    
+                </div>
+            </div>
+
+            <div class="child-3">
+                &copy; The King's Daughter 2022
+            </div>
+        </section>
+        <script src="{% static 'js/blog.js' %}">
+
+
+
+        </script>
+
+        
+    </body>
+    
+</html>
+
+
+
+
+

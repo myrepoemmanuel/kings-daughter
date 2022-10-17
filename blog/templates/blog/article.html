@@ -1,0 +1,186 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="blog blog_articles_page">
+    <div class="child-1">
+        {% for article in articles %}
+        <h1>{{ article.title }}</h1>
+
+        <div>
+            <img src="{{ article.articleImage }}" alt="">
+        </div>
+
+        <div class="date_posted">
+            <div class="author_image">
+                <img src="{{ article.authorImage }}" alt="">
+            </div>
+            <h3>
+                By : {{ article.author }} | {{ article.date_added }} 
+            </h3>
+
+            <span class="social_icons">
+                <img style="background: black; border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-facebook-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-twitter-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-instagram-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-pinterest-100.png' %}" alt="">
+                    <img style="border-radius: 50%; width: 30px; height: 30px;" src="{% static 'img/icons8-search-100.png' %}" alt="">
+            </span>
+        </div>
+
+        <div>
+            <p>Last update on March 5, 2022</p>
+        </div>
+
+        <div id="the_articles" class="the_articles">
+            <p>
+                {{ article.article }}
+            </p>
+        </div>
+
+        <img id="image1" class="hide" src="{{ article.image1 }}" alt="">
+        <img id="image2" class="hide" src="{{ article.image2 }}" alt="">
+        <img id="image3" class="hide" src="{{ article.image3 }}" alt="">
+
+        {% endfor %}
+
+    </div>
+
+    <div class="blog_filters">
+        <div class="blog_categories">
+            <div>
+                <h3>blog categories</h3>
+                <span></span>
+            </div>
+            <div>
+                <a href="{% url 'blog_category_page' 'Scripture' %}">Scripture</a>
+                <a href="{% url 'blog_category_page' 'Life' %}">Life</a>
+                <a href="{% url 'blog_category_page' 'Fashion' %}">Fashion</a>
+                <a href="{% url 'blog_category_page' 'Health' %}">Health</a>
+                <a href="{% url 'blog_category_page' 'Beauty' %}">Beauty</a>
+            </div>
+        </div>
+
+        <div class="blog_search">
+            <div>
+                <h3>Search</h3>
+                <span></span>
+            </div>
+            <div>
+                <input type="text" name="blog_search" id="blog_search" placeholder="Type here to search the blog...">
+                <img src="{% static 'img/icons8-search-100.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="blog_latest">
+            <div>
+                <h3>latest posts</h3>
+                <span></span>
+            </div>
+
+            <div>
+
+                {% for latest in latest_articles %}
+                <a href="{% url 'blog_articles' latest.title %}">
+                    <img src="{{ latest.articleImage }}" alt="">
+                    <span>
+                        <h3>{{ latest.title }}</h3>
+                    </span>
+                </a>
+                {% endfor %}
+                
+                
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+
+<script>
+    let the_articles = document.getElementById('the_articles');
+    let the_articles_child = the_articles.children[0];
+    let myArray = the_articles_child.innerHTML.split(" ");
+    
+
+    for(let i=0; i <myArray.length;i++){
+
+        // Check for a title......
+
+        if ( myArray[i] === "title~" ){
+            myArray[i] = "<span class='title'>"
+        }
+        if ( myArray[i] === "~title" ){
+            myArray[i] = "</span>"
+        }
+
+        // Check for a part......
+
+        if ( myArray[i] === "part~" ){
+            myArray[i] = "<span class='part'>"
+        }
+        if ( myArray[i] === "~part" ){
+            myArray[i] = "</span>"
+        }
+
+        // check for verse.... 
+
+        if ( myArray[i] === "verse~" ){
+            myArray[i] = "<h1 class='verse'>"
+        }
+        if ( myArray[i] === "~verse" ){
+            myArray[i] = "</h1>"
+        }
+
+        // Check for a book in Bible......
+
+        if ( myArray[i] === "book~" ){
+            myArray[i] = "<span class='book'>"
+        }
+        if ( myArray[i] === "~book" ){
+            myArray[i] = "</span>"
+        }
+
+        // Check for emphasis......
+        
+        if ( myArray[i] === "em~" ){
+            myArray[i] = "<span class='emphasis'>"
+        }
+        if ( myArray[i] === "~em" ){
+            myArray[i] = "</span>"
+        }
+
+        // Check for images......
+        
+        if ( myArray[i] === "image1" || myArray[i] === "image2" ||myArray[i] === "image3" ){
+            console.log(myArray.indexOf(myArray[i]))
+            myArray[i] = `<span class='article_image_box'>${myArray[i]}</span>`;
+            
+            
+
+        }
+
+        
+    }
+
+    console.log(myArray)
+    the_articles_child.innerHTML = myArray.join(" ");
+    let tryArr = the_articles.innerHTML.split('~part')
+    // console.log(tryArr[1])
+    the_articles_child.innerHTML = tryArr.join(" ");
+    
+    let MyId = document.getElementsByClassName('article_image_box')[0];
+    article_image(MyId.innerHTML);
+    function article_image(imId){
+        let imTag = document.getElementById(imId);
+        console.log(imTag);
+        imTag.classList.remove('hide');
+        MyId.innerHTML="";
+        MyId.appendChild(imTag);
+
+    }
+</script>
+
+{% endblock %}
