@@ -1,0 +1,148 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<div class="contact-container">
+        
+        
+    <form id="cont-form">
+        <div class="contact-welcome">
+            <h1>CONTACT</h1>
+
+            <p style="font-style: italic;">
+            At The King's Daughter we strive to help all and aim 
+            to have everyone followig us enlightened and also a peaceful stay. 
+            kindly fill the form below we will contact you concerning any enquiries.
+            </p>
+        </div>
+        <div class="contact-personal">
+            <div class="input-boxes">
+            <label for="fname">
+                First Name
+                <span style="color: red;">*</span>
+            </label>
+            <input type="text" id="fname" name="firstname">
+            </div>
+
+            <div class="input-boxes">
+            <label for="lname">
+                Last Name
+                <span style="color: red;">*</span>
+            </label>
+            <input type="text" id="lname" name="lastname">
+            </div>
+
+            <div class="input-boxes">
+            <label for="email">
+                Email Address
+                <span style="color: red;">*</span>
+            </label>
+            <input type="text" id="email" name="email">
+            </div>
+
+            <div class="input-boxes">
+            <label for="phone_number">
+                Phone Number
+            </label>
+            <input type="text" id="phone_number" name="phoneNumber">
+            </div>
+        </div>
+
+            <div class="input-boxes">
+            <label for="country">
+                Country
+                <span style="color: red;">*</span>
+            </label>
+            <select id="country" name="country">
+                <option value="Kenya">Kenya</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Egypt">Egypt</option>
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+                <option value="other">other</option>
+            </select>
+            </div>
+
+            <div class="input-boxes">
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Help understand your problem better..." style="height:200px"></textarea>
+            </div>
+            <input id="submit-contact" type="submit" value="Submit">
+
+    </form>
+    <div class="other-details">
+        <div class="cont-info">
+            <!-- <p>
+            <span style="font-weight: 700;">Email:</span> 
+            <span>info@themarket.com</span>
+            </p> -->
+            <p>
+            <span style="font-weight: 700;">Phone:</span> 
+            <span>+254716136612</span>
+            </p>
+            <p>
+            <span style="font-weight: 700;">Office:</span> 
+            <span>Nairobi Central Business District, Afya House</span>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+
+    var form = document.getElementById('cont-form')
+    
+    form.addEventListener('submit', function(e){
+        e.preventDefault()
+    })
+
+    document.getElementById('submit-contact').addEventListener('click', function(e){
+        submitFormData()
+    })
+    function submitFormData(){
+        var ContactData = {
+            'firstname': form.firstname.value,
+            'lastname': form.lastname.value,
+            'phoneNumber': form.phoneNumber.value,
+            'email': form.email.value,
+            'country': form.country.value,
+            'subject': form.subject.value
+        }
+        
+        
+        var url = '/process_contact/';
+
+                fetch(url, {
+                    method:'POST',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body:JSON.stringify({'ContactData': ContactData,})
+
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('success:',data);
+                    alert('Issue Received Successfully');
+                    form.firstname.value = "";
+                    form.email.value = "";
+                    form.lastname.value = "";
+                    form.phoneNumber.value = "";
+                    form.country.value = "";
+                    form.subject.value = "";
+                    
+                })
+        
+        
+    }
+
+
+    </script>
+
+{% endblock %}

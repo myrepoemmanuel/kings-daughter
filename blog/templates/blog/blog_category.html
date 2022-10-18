@@ -1,0 +1,86 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="blog blog_category_page">
+
+    <div class="blog_articles">
+
+        {% for article in articles %}
+        <div class="blog_card">
+            <img src="{{ article.articleImage }}" alt="">
+            <div>
+                <h3>{{ article.articleCategory }}</h3>
+                <h1>
+                    <a href="{% url 'blog_articles' article.title %}">{{ article.title }}</a>
+                </h1>
+                <p>
+                    {{ article.articleDescription|slice:"100" }}...
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+    <div class="blog_filters">
+        <div class="blog_categories">
+            <div>
+                <h3>blog categories</h3>
+                <span></span>
+            </div>
+            <div>
+                <a href="{% url 'blog_category_page' 'Scripture' %}">Scripture</a>
+                <a href="{% url 'blog_category_page' 'Life' %}">Life</a>
+                <a href="{% url 'blog_category_page' 'Fashion' %}">Fashion</a>
+                <a href="{% url 'blog_category_page' 'Health' %}">Health</a>
+                <a href="{% url 'blog_category_page' 'Beauty' %}">Beauty</a>
+            </div>
+        </div>
+
+        <div class="blog_search">
+            <div>
+                <h3>Search</h3>
+                <span></span>
+            </div>
+            <div>
+                <input type="text" name="blog_search" id="blog_search" placeholder="Type here to search the blog...">
+                <img src="{% static 'img/icons8-search-100.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="blog_latest">
+            <div>
+                <h3>latest posts</h3>
+                <span></span>
+            </div>
+
+            <div>
+                {% for latest in latest_articles %}
+                <a href="{% url 'blog_articles' latest.title %}">
+                    <img src="{{ latest.articleImage }}" alt="">
+                    <span>
+                        <h3>{{ latest.title }}</h3>
+                    </span>
+                </a>
+                {% endfor %}
+                
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+<script>
+    let blog_articles = document.getElementsByClassName("blog_articles")[0];
+    if( blog_articles.children.length === 0 ){
+        let coming_soon = document.createElement('div');
+        coming_soon.setAttribute('class','coming_soon');
+        blog_articles.appendChild(coming_soon);
+    }
+</script>
+
+{% endblock %}

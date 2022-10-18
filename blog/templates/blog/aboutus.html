@@ -1,0 +1,87 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<section class="about_us">
+    {% for about in about_text %}
+        <div id="section_1">
+            <div class="main_about_us_image">
+                <div>
+                    <img src="{% static 'img/julio_cyp.webp' %}" alt="">
+                </div>
+            </div>
+            <div class="main_about_us_text">
+                <h1>Hello!</h1>
+                <h2>welcome to Our Blog</h2>
+                <p>
+                    {{about.intro_text}}
+                </p>
+            </div>
+        </div>
+
+        <div id="section_2">
+            <p>
+                {{about.goal}}
+            </p>
+        </div>
+        
+        <div id="section_3">
+            <h1>Our Journey</h1>
+            <p>
+                {{about.paragraph_1}}
+                <br><br>
+
+                {{about.paragraph_2}}
+
+                <br><br>
+
+                <span class="our_journey_images">
+                    <img src="{{about.image1}}" alt="">
+                    <img src="{{about.image2}}" alt="">
+                </span>
+
+                <br><br>
+
+                {{about.paragraph_3}}
+                <br><br>
+                {{about.paragraph_4}}
+
+
+            </p>
+        </div>
+    {% endfor %}
+        
+    <div id="section_4" class="start_here">
+        <h1>Aim of this blog</h1>
+        <p>Get Started with us</p>
+        <div class="welcomers">
+            {% for card in blog_aim %}
+            <div class="welcomers_card">
+                
+                <span>
+                    <img src="{{card.ImageUrl}}" alt="">
+                </span>
+                <span>
+                    <p class="link">
+                        <a href="{% url 'blog_articles' card.title %}">
+                            {{card.title}}
+                        </a>
+                    </p>
+                </span>
+                <span>
+                    {{card.description | slice:"95"}}
+                </span>
+                <span class="btn">
+                    <a href="{% url 'blog_articles' card.title %}">learn more</a>
+                </span>
+            </div>
+            {% endfor %}
+
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}
