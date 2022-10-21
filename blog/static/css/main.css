@@ -1634,8 +1634,6 @@ input[type=submit]:hover {
 .blog_category_page .blog_articles{
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(auto, 15em);
     gap: .5em;
     height: max-content;
 }
