@@ -61,22 +61,7 @@
                     //return null if not found
                     return null;
                 }
-                var cart = JSON.parse(getCookie('cart'));
-                var cart_no = JSON.parse(getCookie('cartno'))
-
-                // set the cookie if it's not there
-
-                if (cart == undefined){
-                    cart = {}
-                    console.log('cart created!', cart);
-                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
-                }
-                if (cart_no == undefined){
-                    cart_no = {}
-                    console.log('cart_no created!', cart_no);
-                    document.cookie = 'cartno=' + JSON.stringify(cart_no) + ";domain=;path=/";
-                }
-                console.log("cart:",cart);
+            
             
         </script>
 

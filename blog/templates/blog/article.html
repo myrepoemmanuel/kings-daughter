@@ -155,7 +155,6 @@
         // Check for images......
         
         if ( myArray[i] === "image1" || myArray[i] === "image2" ||myArray[i] === "image3" ){
-            console.log(myArray.indexOf(myArray[i]))
             myArray[i] = `<span class='article_image_box'>${myArray[i]}</span>`;
             
             
@@ -165,17 +164,14 @@
         
     }
 
-    console.log(myArray)
     the_articles_child.innerHTML = myArray.join(" ");
     let tryArr = the_articles.innerHTML.split('~part')
-    // console.log(tryArr[1])
     the_articles_child.innerHTML = tryArr.join(" ");
     
     let MyId = document.getElementsByClassName('article_image_box')[0];
     article_image(MyId.innerHTML);
     function article_image(imId){
         let imTag = document.getElementById(imId);
-        console.log(imTag);
         imTag.classList.remove('hide');
         MyId.innerHTML="";
         MyId.appendChild(imTag);
