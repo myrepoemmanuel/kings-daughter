@@ -31,7 +31,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', 'ek0@l9(9eu^+%*-zedg9%m3mdh5f3!&y9mu_7u+-mi*)c2e')
+SECRET_KEY = ('ek0@l9(9eu^+%*-zedg9%m3mdh5f3!&y9mu_7u+-mi*)c2e')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -136,9 +136,9 @@ USE_TZ = True
 
 
 # aws settings
-AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = ('AKIAYIDM7EQZSJOFZSXO')
+AWS_SECRET_ACCESS_KEY = ('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')
+AWS_STORAGE_BUCKET_NAME = ('kings-daughter-static')
 
 AWS_DEFAULT_ACL = 'public-read'
 
