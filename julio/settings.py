@@ -160,9 +160,9 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 # )
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/img/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/static/img')
 
 # LOGIN_REDIRECT_URL = 'index'
 
