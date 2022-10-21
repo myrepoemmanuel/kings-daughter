@@ -146,7 +146,7 @@ AWS_DEFAULT_ACL = 'public-read'
 
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-DEFAULT_FILE_STORAGE = f'julio.storage_backends.MediaStorage'
+DEFAULT_FILE_STORAGE = 'julio.storage_backend.MediaStorage'
 
 # s3 static settings
 AWS_LOCATION = 'static'
