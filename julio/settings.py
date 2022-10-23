@@ -133,6 +133,12 @@ USE_TZ = True
 # STATIC_URL = '/static/'
 
 # STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'blog/static'),
 ]
@@ -156,15 +162,10 @@ STATICFILES_DIRS = [
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-# STATICFILES_FINDERS = (
-#     'django.contrib.staticfiles.finders.FileSystemFinder',
-#     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
-# )
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
+# s3 public media settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 
 LOGIN_REDIRECT_URL = 'index'
 
