@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['kings-daughter.herokuapp.com','127.0.0.1']
 
@@ -94,6 +94,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': '*****',
+#         'USER': 'postgres',
+#         'PASSWORD': '*****',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -130,7 +141,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 
@@ -139,9 +150,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog/media')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'blog/static'),
-]
 
 # aws settings
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']

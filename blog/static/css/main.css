@@ -708,7 +708,10 @@ header{
 }
 
 
-.footer .child-1 .sec_1 .privacy{}
+.footer .child-1 .sec_1 .privacy{
+    position: relative;
+    /* above is irrelevant */
+}
 
 
 .footer .child-1 .sec_1 .privacy > div{
@@ -1748,6 +1751,7 @@ input[type=submit]:hover {
 }
 
 .blog_articles_page .blog_latest div:nth-child(2) a{
+    position: relative;
     /* grid-template-columns: 10em 1fr; */
 }
 
