@@ -25,7 +25,7 @@ body{
     color: white;
     box-sizing: border-box;
     display: grid;
-    place-items: center;    
+    place-items: center;
 }
 
 
@@ -251,9 +251,9 @@ header{
 
 
 .menu{
-    position:absolute; 
-    top: 0; 
-    left: 95vw; 
+    position:absolute;
+    top: 0;
+    left: 95vw;
     font-size:35px;
     cursor:pointer;
     color:white;
@@ -269,8 +269,8 @@ header{
     top: 0;
     background-color: rgba(79, 74, 77, 0.91);
     background-image: linear-gradient(-145deg, rgba(141, 99, 140, 0.9), #000000c2 15%);
-    overflow-x: hidden; 
-    transition: 0.5s; 
+    overflow-x: hidden;
+    transition: 0.5s;
 }
 
 /* Position the content inside the overlay */
@@ -278,9 +278,9 @@ header{
     position: relative;
     display: grid;
     top: 25%;
-    width: 100%; 
-    text-align: center; 
-    margin-top: 30px; 
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
     justify-items: center;
 }
 
@@ -290,7 +290,7 @@ header{
     text-decoration: none;
     font-size: 36px;
     color: #818181;
-    display: block; 
+    display: block;
     transition: 0.3s;
     width: max-content;
 }
@@ -372,7 +372,7 @@ header{
     position: relative;
     width: 100%;
     height: 100%;
-    
+
 }
 .author_intro .intro_images span{
     display: grid;
@@ -387,7 +387,7 @@ header{
     transform: rotate(-30deg);
     left: -60px;
     bottom: -85px;
-    
+
 }
 
 .author_intro .intro_images:hover span > div:nth-child(1):hover{
@@ -416,7 +416,7 @@ header{
     transform: rotate(15deg);
     bottom: -30px;
     right: -90px;
-    
+
 }
 
 .author_intro .intro_images:hover span > div:nth-child(3):hover{
@@ -578,7 +578,8 @@ header{
 .start_here .welcomers .welcomers_card span{
     display: grid;
     width: 100%;
-    
+    overflow: hidden;
+
 }
 
 .start_here .welcomers .welcomers_card span:nth-child(2) img{
@@ -624,9 +625,9 @@ header{
     position: relative;
     display: grid;
     gap: 20px;
-    width: 100%; 
+    width: 100%;
     min-height: 250px;
-    max-height: max-content; 
+    max-height: max-content;
     background: rgb(48, 41, 41);
     padding: 4.5em 5em 1em 5em;
     overflow: hidden;
@@ -717,7 +718,7 @@ header{
 .footer .child-1 .sec_1 .privacy > div{
     position: relative;
     display: grid;
-    
+
 }
 
 
@@ -831,7 +832,7 @@ header{
     text-decoration: none;
     display: grid;
     place-items: center;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     background: rgba(255, 255, 255, 0.458);
     padding: .3em;
@@ -842,20 +843,20 @@ header{
 
 .footer .child-2 .social_icons a:hover{
     filter: brightness(3);
-    width: 41px; 
+    width: 41px;
     height: 41px;
 }
 
-.footer .child-2 img{ 
+.footer .child-2 img{
     border-radius: 50%;
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
 }
 
 .footer .child-2 .social_icons a:nth-child(1)::after{
     position: absolute;
     content: '';
-    width: 25px; 
+    width: 25px;
     height: 25px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.751);
@@ -879,13 +880,14 @@ header{
     grid-template-columns: repeat(2, 1fr);
     background: wheat;
     margin-block: 30px;
-    
+
 }
 
 .main_newsletter_image{
     position: relative;
     width: 100%;
     height: 100%;
+    padding-block: 0;
 }
 
 .main_newsletter_image img{
@@ -918,7 +920,7 @@ header{
     width: 100%;
     color: black;
     text-align: center;
-    
+
 }
 
 .main_newsletter form h4{
@@ -997,6 +999,10 @@ header{
     height: max-content;
 }
 
+#section_6 div:nth-child(1){
+    padding-block: 10px;
+}
+
 #section_6 div{
     display: grid;
     width: 100%;
@@ -1005,7 +1011,6 @@ header{
     gap: 20px;
     place-items: center;
     grid-template-rows: repeat(4, max-content);
-    padding-block: 10px;
 }
 
 #section_6 div h1{
@@ -1021,7 +1026,7 @@ header{
     padding-bottom: 25px;
     width: 100%;
     color: black;
-    
+
 }
 
 #section_6 div h4{
@@ -1077,7 +1082,7 @@ header{
     width: 100%;
     text-align: center;
     justify-self: center;
-    
+
 }
 
 #section_6 .main_newsletter_image{
@@ -1246,7 +1251,7 @@ header{
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 30vw;
     place-items: center;
-    width: 100%;
+    width: 65%;
 }
 
 .about_us #section_3 .our_journey_images img{
@@ -1317,7 +1322,7 @@ header{
 
 .contact-container .other-details .cont-info{
     position: relative;
-    
+
     background-color: #4854614b;
     border-radius: 2px;
     box-shadow: 2px 2px 10px rgb(37, 37, 37);
@@ -1338,14 +1343,14 @@ header{
     color: rgb(91, 79, 79);
 }
 
-.contact-container input[type=text], 
-.contact-container select, 
+.contact-container input[type=text],
+.contact-container select,
 .contact-container textarea {
-    width: 100%; 
-    padding: 12px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    box-sizing: border-box; 
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 16px;
     resize: none;
@@ -1437,6 +1442,7 @@ input[type=submit]:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    max-height: 20rem;
 }
 
 .blog .blog_card div{
@@ -1525,6 +1531,7 @@ input[type=submit]:hover {
     font-family: 'Montserrat';
     letter-spacing: 2px;
     text-transform: uppercase;
+    height: fit-content;
 }
 
 .blog_filters .blog_categories div:nth-child(1) span,
@@ -1570,7 +1577,7 @@ input[type=submit]:hover {
     color: #2b0235;
     position: relative;
     transform: translateX(15px);
-    
+
 }
 
 
@@ -1578,7 +1585,7 @@ input[type=submit]:hover {
     position: relative;
     display: grid;
     width: 100%;
-    height: 2.5em;
+    height: 2.6em;
     align-items: center;
 }
 
@@ -1696,8 +1703,8 @@ input[type=submit]:hover {
 .blog_articles_page .child-1{
     position: relative;
     display: grid;
-    grid-template-rows: 
-        max-content 30em max-content 
+    grid-template-rows:
+        max-content 30em max-content
         max-content max-content;
     color: #000;
     gap: 1.5em;
@@ -1761,11 +1768,13 @@ input[type=submit]:hover {
     gap: 1em;
 }
 
-.blog_articles_page .the_articles p span{
+.blog_articles_page .the_articles p span,
+.about_us #section_3 p span
+{
     display: inline-block;
 }
 
-.blog_articles_page .the_articles p .title{
+.title{
     position: relative;
     text-transform: uppercase;
     font-family: "Playfair Display";
@@ -1779,8 +1788,12 @@ input[type=submit]:hover {
     border-bottom: 3px solid rgba(243, 158, 227, 0.558);
 }
 
+.part{
+    margin: 0;
+    padding-block: 1rem;
+}
 
-.blog_articles_page .the_articles p .verse{
+.verse{
     margin: 0;
     font-size: 1.2em;
     border-left: 5px solid rgba(155, 70, 144, 0.866);
@@ -1788,13 +1801,13 @@ input[type=submit]:hover {
     font-style: italic;
 }
 
-.blog_articles_page .the_articles p .verse .book{
+.book{
     font-weight: 700;
     color: rgba(39, 76, 74, 0.87);
     font-style: normal;
 }
 
-.blog_articles_page .the_articles p .emphasis{
+.emphasis{
     font-weight: 650;
     font-style: italic;
     border-bottom: 3px dotted #000;
@@ -1812,6 +1825,78 @@ input[type=submit]:hover {
     height: 100%;
     object-fit: cover;
 }
+
+
+/* subscriber page */
+
+#subpage-sec{
+    margin: 0;
+    grid-template-columns: 1fr;
+    height: 60vh;
+    justify-items: center;
+    background-image: url("/static/img/newsletter.jpg");
+    /* background-position: 0 0; */
+    background-color: rgba(28, 27, 27, 0.666);
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+#subpage-sec .form{
+    width: 70%;
+
+}
+
+#subpage-sec h4{
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 2rem;
+    /* letter-spacing: normal; */
+    line-height: normal;
+
+}
+
+.subspage-sec1{
+    display: grid;
+    place-items: center;
+    min-height: 40vh;
+    width: 100%;
+    background-color: rgb(135, 135, 135);
+    background-image: url("/static/img/join_list.jpg");
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+
+}
+
+.subspage-sec2{
+    display: grid;
+    place-items: center;
+    min-height: 25vh;
+    width: 100%;
+    background-color:#e826b861;
+    color: #000;
+    padding-block: 1rem;
+}
+
+.subspage-sec2 p{
+    width: 80%;
+    margin: 0;
+    font-size: 23px;
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+.subspage-sec1 h1{
+    font-family: 'Playfair Display';
+    font-size: 55px;
+    margin: 0;
+    color: wheat;
+    text-align: center;
+    font-style: italic;
+}
+
+
 
 
 @media only screen and (max-width:1460px)
@@ -1855,7 +1940,7 @@ input[type=submit]:hover {
 @media only screen and (max-width:1157px)
 {
 
-    
+
     .author_intro .intro_images div{
         width: 100%;
     }
@@ -1886,7 +1971,7 @@ input[type=submit]:hover {
         grid-template-rows: max-content max-content max-content;
     }
 
-    
+
 }
 
 @media only screen and (max-width:1105px)
@@ -1926,16 +2011,8 @@ input[type=submit]:hover {
         font-size: 15px;
     }
 
-    #section_6{
-        grid-template-columns: 1fr;
-    }
-
     #section_6 div h4{
         width: 80%;
-    }
-
-    #section_6 .main_newsletter_image{
-        display: none;
     }
 
     .contact-container .other-details .cont-info p {
@@ -1960,7 +2037,7 @@ input[type=submit]:hover {
     }
 
     .main-container .categories{
-        grid-template-columns: 
+        grid-template-columns:
         repeat(auto-fill, minmax(min(9rem,100%), 1fr));
     }
 
@@ -1981,7 +2058,7 @@ input[type=submit]:hover {
         font-size: 33px;
     }
 
-    
+
 
     .start_here .welcomers{
         grid-template-columns: repeat(3, 25em);
@@ -1999,9 +2076,9 @@ input[type=submit]:hover {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, max-content);
         overflow: hidden;
-    
+
     }
-    
+
     .blog .blog_articles{
         justify-items: center;
     }
@@ -2029,7 +2106,7 @@ input[type=submit]:hover {
     .footer .footer_gallery > div a img{
         object-fit: cover;
     }
-    
+
     .footer .child-1{
         grid-template-columns: repeat(2, 1fr);
     }
@@ -2037,7 +2114,7 @@ input[type=submit]:hover {
     .footer .child-1 > div:nth-child(2){
         display: none;
     }
-    
+
     .about_us #section_4 .welcomers{
         grid-template-rows: 35rem;
         grid-template-columns: repeat(3,min-content);
@@ -2094,7 +2171,7 @@ input[type=submit]:hover {
 @media only screen and (max-width:700px)
 {
 
-    
+
 
     .start_here .welcomers {
         grid-template-columns: repeat(3, 15em);
@@ -2163,6 +2240,14 @@ input[type=submit]:hover {
 
     #section_5 .welcomers {
         grid-template-columns: repeat(3, 15em);
+    }
+
+    #section_6{
+        grid-template-columns: 1fr;
+    }
+
+    #section_6 .main_newsletter_image{
+        display: none;
     }
 
     .start_here h1{
@@ -2256,7 +2341,7 @@ input[type=submit]:hover {
         grid-template-rows: max-content max-content max-content 3em;
     }
 
-    
+
 
 }
 
@@ -2266,7 +2351,7 @@ input[type=submit]:hover {
     }
 
     .main-container .categories{
-        grid-template-columns: 
+        grid-template-columns:
         repeat(auto-fill, minmax(min(8rem,100%), 1fr));
     }
 
@@ -2274,7 +2359,7 @@ input[type=submit]:hover {
         height: 72px;
         font-size: 1.5rem;
     }
-    
+
     #blog_name h1 {
         font-size: 30px;
     }
@@ -2322,8 +2407,8 @@ input[type=submit]:hover {
         gap: 5px;
     }
 
-    .about_us .main_about_us_text > h1, 
-    .about_us .main_about_us_text > h2, 
+    .about_us .main_about_us_text > h1,
+    .about_us .main_about_us_text > h2,
     .about_us .main_about_us_text > p{
         line-height: 16px;
         margin-block: 0;
@@ -2352,7 +2437,7 @@ input[type=submit]:hover {
     }
 
     .main-container .categories{
-        grid-template-columns: 
+        grid-template-columns:
         repeat(auto-fill, minmax(min(6rem,100%), 1fr));
     }
 
@@ -2390,7 +2475,7 @@ input[type=submit]:hover {
         font-size: 14px;
     }
 
-    
+
 
     #section_7 .welcomers {
         grid-template-columns: repeat(3, 15em);
@@ -2441,10 +2526,10 @@ input[type=submit]:hover {
     .about_us #section_3 p{
         font-size: .625rem;
     }
-    
+
 
 }
-/* 
+/*
 
 .about_us #section_1 {
     grid-template-rows: max-content;

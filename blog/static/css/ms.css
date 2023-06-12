@@ -1,0 +1,286 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: linear-gradient(33deg,#48035d, #87489a, black);
+    background-repeat: no-repeat;
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-size: 14px;
+    color: #000;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+.flake{
+    position: absolute;
+    top: -20vh;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    animation: sliding 20s ease-in-out infinite;
+
+}
+
+@keyframes sliding {
+    100%{
+        transform: translateY(150vh);
+    }
+}
+
+
+.flake img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper {
+    cursor: pointer;
+    width: 70vw;
+    height:90vh;
+    overflow: hidden;
+    padding: 3rem 3.5rem;
+
+}
+
+.swiper-slide {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    place-items: center;
+    overflow: hidden;
+    font-size: 18px;
+    background: #fff;
+    background: linear-gradient(54deg, red, rgb(121, 71, 146), rgba(28, 25, 25, 0.389), rgb(149, 92, 180));
+}
+
+.slide-2{
+    background: #821591;
+}
+
+.slide-1{
+    grid-template-rows: repeat(2, max-content);
+}
+
+.slide-1 h1{
+    margin: 10px;
+    width: max-content;
+    display: grid;
+    font-size: 5rem;
+    font-family: "Playfair Display";
+    font-style: italic;
+    color: #d79292;
+
+}
+
+.slide-1 h3{
+    font-family: "Montserrat";
+    width: 80%;
+    color: wheat;
+    letter-spacing: 2px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.slide-1 h3 .team-name{
+    /* text-shadow: -2px -2px rgb(50, 14, 14), 2px 2px rgb(17, 6, 6);  */
+    color: rgb(148, 93, 157);
+    padding: 3px 10px;
+    background: rgb(211, 178, 228);
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    overflow-clip-margin: none;
+    overflow: hidden;
+}
+
+
+.autoplay-progress {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+}
+
+@media only screen and (max-width:1000px) {
+
+    .swiper{
+        width: 100vw;
+        padding: 3rem 1.5rem;
+    }
+
+}
+/* @media only screen and (max-width:900px) {
+    .swiper-wrapper, .swiper-pagination, .autoplay-progress{
+        display: none;
+    }
+
+    .swiper{
+        padding: 0;
+        height: max-content;
+    }
+    .swiper::after{
+        position: absolute;
+        content:
+        "Sorry you only get to see flakes, we appreciate you. The full animated card is best seen on laptop. Thank you";
+        font-size: 30px;
+        color: wheat;
+        text-align: center;
+        align-self: center;
+        justify-self: center;
+        height: max-content;
+    }
+} */
+
+@media only screen and (max-width:850px) {
+
+    .swiper-wrapper{
+        padding: 0;
+        height: 65vh;
+        cursor: pointer;
+
+
+    }
+
+    .slide-1 h1{
+        font-size: 3rem;
+    }
+
+    .slide-1 h3 {
+        font-family: "Montserrat";
+        width: 80%;
+        letter-spacing: 1px;
+        line-height: normal;
+    }
+
+}
+
+@media only screen and (max-width:850px) {
+
+
+
+    .swiper-wrapper{
+        padding: 0;
+        height: 65vh;
+        cursor: pointer;
+
+
+    }
+
+    .slide-1 h1{
+        font-size: 3rem;
+    }
+
+    .slide-1 h3 {
+        font-family: "Montserrat";
+        width: 80%;
+        letter-spacing: 1px;
+        line-height: normal;
+    }
+
+}
+
+@media only screen and (max-width:700px) {
+
+    .swiper-wrapper{
+        padding: 0;
+        height: 55vh;
+        cursor: pointer;
+    }
+    .swiper{
+        height: 70vh;
+        width: 100vw;
+        padding: 3rem 1.5rem;
+    }
+
+}
+
+@media only screen and (max-width:600px) {
+
+
+
+}
+
+@media only screen and (max-width:500px) {
+
+    .swiper-wrapper{
+        padding: 0;
+        height: 45vh;
+        cursor: pointer;
+
+
+    }
+
+    .swiper{
+        height: 60vh;
+
+    }
+
+    .slide-1 h1{
+        font-size: 2rem;
+    }
+
+    .slide-1 h3 {
+        font-size: .8rem;
+    }
+
+}
+
+@media only screen and (max-width:320px) {
+
+    .swiper-wrapper{
+        height: 35vh;
+    }
+
+    .swiper{
+        height: 50vh;
+
+    }
+
+    .slide-1 h1{
+        font-size: 1.5rem;
+    }
+
+    .slide-1 h3 {
+        font-size: .6rem;
+    }
+
+}

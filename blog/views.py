@@ -2,7 +2,7 @@ import json
 from json import dumps
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import About, BlogAim, BlogArticles, ContactUs, Subscribers, WelcomeInformation, WhereToStart, WhatsNew, Categories
+from .models import About, BlogAim, BlogArticles, ContactUs, Subscribers, WelcomeInformation, WhereToStart, Categories
 
 # Create your views here.
 
@@ -12,8 +12,8 @@ def index(request):
 
     categories = Categories.objects.all()
     where_to_start = WhereToStart.objects.all()
-    what_is_new = WhatsNew.objects.all()
-    
+    what_is_new = BlogArticles.objects.filter().order_by('-date_added')[:3]
+
     context = {
         'welcome_info':welcome_info,
         'where_to_start':where_to_start,
@@ -22,10 +22,17 @@ def index(request):
     }
     return render(request, 'blog/index.html', context)
 
+def card(request):
+
+    context = {
+
+    }
+    return render(request, 'blog/card.html', context)
+
 def blog(request):
     articles = BlogArticles.objects.filter()
     latest_articles = BlogArticles.objects.filter().order_by('-date_added')[:4]
-    
+
     print(latest_articles)
     context = {
         'articles':articles,
@@ -38,7 +45,7 @@ def blogArticles(request, *args, **kwargs):
     articles = BlogArticles.objects.filter(title=kwargs['article_title'])
     latest_articles = BlogArticles.objects.filter().order_by('-date_added')[:4]
 
-    
+
 
     context = {
         'articles':articles,
@@ -88,11 +95,23 @@ def shop(request):
     context = {}
     return render(request, 'blog/shop.html', context)
 
+def podcast(request):
+
+    context = {}
+    return render(request, 'blog/podcast.html', context)
+
+
+def subscribe(request):
+
+    context = {}
+    return render(request, 'blog/subscribe.html', context)
+
+
 
 def processSubscriber(request):
     data = json.loads(request.body)
-    
-    
+
+
     Subscribers.objects.create(
     name=data['SubscriberData']['name'],
     email=data['SubscriberData']['email'],
@@ -103,8 +122,8 @@ def processSubscriber(request):
 
 def processContact(request):
     data = json.loads(request.body)
-    
-    
+
+
     ContactUs.objects.create(
     first_name=data['ContactData']['firstname'],
     last_name=data['ContactData']['lasttname'],

@@ -3,7 +3,6 @@ import email
 from pydoc import describe
 from tabnanny import verbose
 from django.db import models
-from pytz import timezone
 
 # Create your models here.
 
@@ -21,7 +20,7 @@ class WelcomeInformation(models.Model):
     def __str__(self):
         return f'{self.id}'
 
-    
+
     @property
     def TitleImage(self):
         try:
@@ -29,7 +28,7 @@ class WelcomeInformation(models.Model):
         except:
             url = ''
         return url
-    
+
     @property
     def OwnerImage(self):
         try:
@@ -37,7 +36,7 @@ class WelcomeInformation(models.Model):
         except:
             url = ''
         return url
-    
+
     @property
     def SecondOwnerImage(self):
         try:
@@ -45,7 +44,7 @@ class WelcomeInformation(models.Model):
         except:
             url = ''
         return url
-    
+
     @property
     def ThirdOwnerImage(self):
         try:
@@ -59,6 +58,7 @@ class WhereToStart(models.Model):
     Indexer = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(null=True, blank=True, upload_to="welcome")
     title = models.CharField(max_length=200, null=True, blank=True)
+    slug = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(max_length=200, null=True, blank=True)
 
     class Meta:
@@ -88,26 +88,6 @@ class Subscribers(models.Model):
         return self.email
 
 
-class WhatsNew(models.Model):
-    Indexer = models.CharField(max_length=200, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True, upload_to="welcome")
-    title = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(max_length=200, null=True, blank=True)
-
-    class Meta:
-        verbose_name_plural = "What's  New"
-
-    def __str__(self):
-        return self.title
-
-    @property
-    def ImageUrl(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url
-
 
 
 class Categories(models.Model):
@@ -120,14 +100,14 @@ class Categories(models.Model):
     )
     name = models.CharField(max_length=200, null=True, choices=Categories)
     image = models.ImageField(null=True, blank=True, upload_to="categories")
-    
+
     class Meta:
         verbose_name_plural = "Categories"
 
 
     def __str__(self):
         return self.name
-    
+
     @property
     def imageURL(self):
         try:
@@ -148,15 +128,15 @@ class BlogArticles(models.Model):
     ArticleImage1 = models.ImageField(null=True, blank=True, upload_to="blog")
     ArticleImage2 = models.ImageField(null=True, blank=True, upload_to="blog")
     ArticleImage3 = models.ImageField(null=True, blank=True, upload_to="blog")
-    date_modified = models.DateTimeField(auto_now=True, null=True, blank=True)
-    date_added = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_modified = models.DateTimeField(auto_now=True, editable=True, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=False,editable=True, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Blog  Articles"
 
     def __str__(self):
         return self.title
-    
+
     # def save(self, *args, **kwargs):
     #     self.date_modified = datetime.now().date()
     #     super(BlogArticles, self).save(*args, **kwargs)
@@ -184,7 +164,7 @@ class BlogArticles(models.Model):
         except:
             url = ''
         return url
-    
+
     @property
     def image2(self):
         try:
@@ -192,7 +172,7 @@ class BlogArticles(models.Model):
         except:
             url = ''
         return url
-    
+
     @property
     def image3(self):
         try:
@@ -203,6 +183,7 @@ class BlogArticles(models.Model):
 
 
 class About(models.Model):
+    mainimage = models.ImageField(null=True, blank=True, upload_to="blog")
     intro_text = models.CharField(max_length=500, null=True, blank=True)
     goal = models.CharField(max_length=500, null=True, blank=True)
     paragraph_1 = models.TextField(max_length=10000, null=True, blank=True)
@@ -211,7 +192,7 @@ class About(models.Model):
     paragraph_4 = models.TextField(max_length=10000, null=True, blank=True)
     Image1 = models.ImageField(null=True, blank=True, upload_to="blog")
     Image2 = models.ImageField(null=True, blank=True, upload_to="blog")
-    
+
 
     class Meta:
         verbose_name_plural = "About Us"
@@ -221,13 +202,21 @@ class About(models.Model):
 
 
     @property
+    def mainImage(self):
+        try:
+            url = self.mainimage.url
+        except:
+            url = ''
+        return url
+
+    @property
     def image1(self):
         try:
             url = self.Image1.url
         except:
             url = ''
         return url
-    
+
     @property
     def image2(self):
         try:

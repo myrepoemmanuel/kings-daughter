@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import WelcomeInformation, WhereToStart, Subscribers, BlogArticles, WhatsNew, Categories, About, BlogAim, ContactUs
+from .models import WelcomeInformation, WhereToStart, Subscribers, BlogArticles, Categories, About, BlogAim, ContactUs
 
 # Register your models here.
 admin.site.register(Categories)
-admin.site.register(WhatsNew)
 admin.site.register(Subscribers)
 admin.site.register(WhereToStart)
 admin.site.register(WelcomeInformation)

@@ -9,57 +9,57 @@
         <div id="section_1">
             <div class="main_about_us_image">
                 <div>
-                    <img src="{% static 'img/julio_cyp.webp' %}" alt="">
+                    <img src="{{about.mainImage}}" alt="">
                 </div>
             </div>
             <div class="main_about_us_text">
                 <h1>Hello!</h1>
                 <h2>welcome to Our Blog</h2>
-                <p>
+                <p class="mi_journey">
                     {{about.intro_text}}
                 </p>
             </div>
         </div>
 
         <div id="section_2">
-            <p>
+            <p class="mi_journey">
                 {{about.goal}}
             </p>
         </div>
-        
+
         <div id="section_3">
             <h1>Our Journey</h1>
-            <p>
+            <p class="mi_journey">
                 {{about.paragraph_1}}
-                <br><br>
+            </p>
 
+            <p class="mi_journey">
                 {{about.paragraph_2}}
+            </p>
 
-                <br><br>
+            <span class="our_journey_images">
+                <img src="{{about.image1}}" alt="">
+                <img src="{{about.image2}}" alt="">
+            </span>
 
-                <span class="our_journey_images">
-                    <img src="{{about.image1}}" alt="">
-                    <img src="{{about.image2}}" alt="">
-                </span>
 
-                <br><br>
-
+            <p class="mi_journey">
                 {{about.paragraph_3}}
-                <br><br>
+            </p>
+
+            <p class="mi_journey">
                 {{about.paragraph_4}}
-
-
             </p>
         </div>
     {% endfor %}
-        
+
     <div id="section_4" class="start_here">
         <h1>Aim of this blog</h1>
         <p>Get Started with us</p>
         <div class="welcomers">
             {% for card in blog_aim %}
             <div class="welcomers_card">
-                
+
                 <span>
                     <img src="{{card.ImageUrl}}" alt="">
                 </span>
@@ -79,9 +79,81 @@
             </div>
             {% endfor %}
 
-            
+
         </div>
     </div>
 </section>
+
+<script>
+    let the_articles = document.getElementsByClassName('mi_journey');
+
+
+    for(let j=0; j <the_articles.length;j++){
+        let myArray = the_articles[j].innerHTML.split(" ");
+        console.log(myArray,"abbaa")
+        for(let i=0; i <myArray.length;i++){
+
+            // Check for a title......
+
+            if ( myArray[i] === "title~" ){
+                myArray[i] = "<span class='title'>"
+            }
+            if ( myArray[i] === "~title" ){
+                myArray[i] = "</span>"
+            }
+
+            // Check for a part......
+
+            if ( myArray[i] === "part~" ){
+                myArray[i] = "<span class='part'>"
+            }
+            if ( myArray[i] === "~part" ){
+                myArray[i] = "</span>"
+            }
+
+            // check for verse....
+
+            if ( myArray[i] === "verse~" ){
+                myArray[i] = "<h1 class='verse'>"
+            }
+            if ( myArray[i] === "~verse" ){
+                myArray[i] = "</h1>"
+            }
+
+            // Check for a book in Bible......
+
+            if ( myArray[i] === "book~" ){
+                myArray[i] = "<span class='book'>"
+            }
+            if ( myArray[i] === "~book" ){
+                myArray[i] = "</span>"
+            }
+
+            // Check for emphasis......
+
+            if ( myArray[i] === "em~" ){
+                myArray[i] = "<span class='emphasis'>"
+            }
+            if ( myArray[i] === "~em" ){
+                myArray[i] = "</span>"
+            }
+
+            // Check for images......
+
+            if ( myArray[i] === "image1" || myArray[i] === "image2" ||myArray[i] === "image3" ){
+                myArray[i] = `<span class='article_image_box'>${myArray[i]}</span>`;
+            }
+
+
+        }
+
+
+        the_articles[j].innerHTML = myArray.join(" ");
+        let tryArr = the_articles[j].innerHTML.split('~part')
+        tryArr[-1] = "</span>"
+
+        the_articles[j].innerHTML = tryArr.join(" ");
+    }
+</script>
 
 {% endblock %}

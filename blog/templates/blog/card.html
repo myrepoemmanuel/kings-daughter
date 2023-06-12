@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Card</title>
+    <link rel="icon" href ="{% static 'img/crown.ico'%}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ms.css' %}">
+
+</head>
+<body>
+    <!-- Slider main container -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div id="slide1" class="swiper-slide slide-1">
+                <h1>Hello Cyprine</h1>
+                <h3>
+                    The <span class="team-name">King's daughter team</span> here saying how much we'll miss you
+                    and wishing you the safest and blesseded stay in Australia.
+                    You're cherished and forever will be cherished in our hearts.
+                </h3>
+            </div>
+
+            <div id="img-slide" class="swiper-slide slide-2">
+                <img src="{% static 'img/cyprine.png' %}"/>
+            </div>
+
+            <div class="swiper-slide slide-1">
+                <h1>Good bye</h1>
+            </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
+        <div class="autoplay-progress">
+            <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span></span>
+        </div>
+    </div>
+
+
+
+
+
+
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script>
+    let slide1 = document.getElementsByClassName("slide-1")[0].getBoundingClientRect().height;
+    // document.getElementById("img-slide").style.height = 468.48 + "px";
+
+    const progressCircle = document.querySelector(".autoplay-progress svg");
+    const progressContent = document.querySelector(".autoplay-progress span");
+
+
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        speed: 6500,
+        centeredSlides: true,
+        parallax: true,
+
+        effect: "cube",
+        cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+        },
+
+        keyboard: {
+            enabled: true,
+        },
+        mousewheel: true,
+        autoplay: {
+            delay: 5500,
+            disableOnInteraction: true,
+        },
+
+        slidesPerView: 1,
+        spaceBetween: 1000,
+        loop: true,
+
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+        on: {
+            autoplayTimeLeft(s, time, progress) {
+                progressCircle.style.setProperty("--progress", 1 - progress);
+                progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+            }
+        }
+    });
+
+    position = 5;
+
+    main_swiper = document.getElementsByTagName("body")[0];
+
+
+
+    while (position <= 100) {
+        if (position <= 100){
+            let flake = document.createElement("span");
+            flake.setAttribute('class', 'flake')
+            flake.innerHTML += (`<img src='{% static "img/flake1.png" %}'/>`);
+            flake.style.left = position + "vw";
+
+            main_swiper.append(flake);
+
+        }
+        position += 2;
+
+    }
+
+    let allFlakes = document.getElementsByClassName('flake');
+
+    function randomNumber(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    for (let f = 0; f < allFlakes.length; f++) {
+        let cflake = allFlakes[f];
+        cflake.style.animationDelay  = ((randomNumber(0, allFlakes.length)) +1) + "s";
+
+    }
+</script>
+</body>
+</html>
+
+
