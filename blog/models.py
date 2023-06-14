@@ -87,6 +87,20 @@ class Subscribers(models.Model):
     def __str__(self):
         return self.email
 
+class Comments(models.Model):
+    name = models.CharField(max_length=200, default="User", null=True, blank=True)
+    email = models.CharField(max_length=200, null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
+    article_title = models.CharField(max_length=200, null=True, blank=True)
+    date_joined = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Comments"
+
+    def __str__(self):
+        return self.comment
+
+
 
 
 

@@ -1,9 +1,9 @@
 import json
 from json import dumps
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from .models import About, BlogAim, BlogArticles, ContactUs, Subscribers, WelcomeInformation, WhereToStart, Categories
-
+from .models import About, BlogAim, BlogArticles, Comments, ContactUs, Subscribers, WelcomeInformation, WhereToStart, Categories
+from django.urls import reverse
 # Create your views here.
 
 
@@ -42,16 +42,46 @@ def blog(request):
 
 
 def blogArticles(request, *args, **kwargs):
-    articles = BlogArticles.objects.filter(title=kwargs['article_title'])
+    my_tt = str(kwargs['article_title']).replace("-", " ")
+    print(my_tt)
+    articles = BlogArticles.objects.filter(title__icontains=my_tt)
     latest_articles = BlogArticles.objects.filter().order_by('-date_added')[:4]
+    filtered_comments = Comments.objects.filter(article_title__icontains=kwargs['article_title'])
+
 
 
 
     context = {
         'articles':articles,
         'latest_articles':latest_articles,
+        'filtered_comments':filtered_comments
     }
     return render(request, 'blog/article.html', context)
+
+
+def blogComment(request, *args, **kwargs):
+    articleTitle = kwargs['comment']
+    print(articleTitle)
+    Comments.objects.create(
+        comment=request.GET['my_comment'],
+        article_title=articleTitle,
+    )
+    # print(article_title, request.GET['my_comment'])
+    my_tt = str(articleTitle).replace("-", " ")
+    print(my_tt)
+    articles = BlogArticles.objects.filter(title__icontains=my_tt)
+    latest_articles = BlogArticles.objects.filter().order_by('-date_added')[:4]
+    filtered_comments = Comments.objects.filter(article_title__icontains=articleTitle)
+
+
+
+    context = {
+        'articles':articles,
+        'latest_articles':latest_articles,
+        'filtered_comments':filtered_comments
+    }
+    return render(request, 'blog/article.html', context)
+
 
 
 def blogCategorypage(request, *args, **kwargs):
@@ -90,10 +120,10 @@ def contactus(request):
     return render(request, 'blog/contactus.html', context)
 
 
-def shop(request):
+# def shop(request):
 
-    context = {}
-    return render(request, 'blog/shop.html', context)
+#     context = {}
+#     return render(request, 'blog/shop.html', context)
 
 def podcast(request):
 

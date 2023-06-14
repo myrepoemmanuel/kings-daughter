@@ -1,0 +1,29 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+      
+      {% if title %}
+      <title>Django blog - {{ title }}</title>
+      {% else %}
+      <title>Django blog</title>
+      {% endif %}
+      
+      <meta name="description" content="simple payment method for shops">
+      <meta name="author" content="the_*developers">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body class="home-body">
+        
+        
+        <div class="home-container">
+            
+            <h1>Welcome To <br>Ecom-rel Shop</h1>
+            <a href="{% url 'store' %}" class="index-btn success-btn">SHOP NOW</a>
+        </div>
+        
+        
+    </body>
+</html>

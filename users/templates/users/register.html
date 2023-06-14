@@ -1,0 +1,47 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+<style>
+    
+    
+   
+    
+    
+</style>
+
+<section class="reg-cont-box">
+<div class="reg-cont">
+   <h1 style="color: white;">Sign Up</h1>
+   <hr style="margin: 15px 0">
+    <form method="post">
+      {% csrf_token %}
+      {% if form.errors %}
+      <h3 style="color:red;">Ensure you've followed all password validation rules</h3>
+      {% endif %}
+       {% for field in form %}
+         
+             {{ field.label_tag }}<br>
+             
+             <div>{{ field }}</div><br>
+             
+             
+
+             {% if field.help_text %}
+                 <small style="color: black;">{{ field.help_text }}</small><br>
+             {% endif %}
+              <hr style="margin: 15px 0">
+         
+        {% endfor %}
+        <div style="position: relative;display: grid; grid-template-columns: 1fr 1fr; place-items: center;width: 85%;">
+        
+        <button class="success-btn2" style="justify-self: left;" type="submit">Sign up</button>
+        
+        <p style="color:burlywood">Already have an account? <a style="color: white; font-weight: 700;" href="{% url 'users:site-login' %}">Log in</a></p>
+        
+        </div>
+    </form>
+</div>
+</section>
+
+{% endblock %}

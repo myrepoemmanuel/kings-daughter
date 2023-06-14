@@ -1,0 +1,79 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+   
+   
+   
+    
+    <div class="labels-wrapper-box">
+        
+        <div class="store-child-1">
+           
+           <ul>
+               <li style="padding-bottom: 9px; font-size: 20px;">
+                   NIKE
+               </li>
+               <ul class="store-categories">
+                   <li style="padding-bottom: 9px;"><a href="#">Airforce</a></li>
+                   <li style="padding-bottom: 9px;"><a href="#">AirJordans</a></li>
+                   <li style="padding-bottom: 9px;"><a href="#">Airmax</a></li>
+                   <li style="padding-bottom: 9px;"><a href="#">Sb dunk</a></li>
+                   <li style="padding-bottom: 9px;"><a href="#">Sacai</a></li>
+                   
+               </ul>
+           </ul>
+            
+        </div>
+        
+        <div style="position: relative;" class="store-child-2">
+            
+            {% for product in products %}
+                
+                {% if "nike" in product.name %}
+                
+                <div class="prod-card">
+                    <div class="product-top">
+                        <img src="{{product.imageURL}}" alt="">
+                        <div class="prod-overlay">
+                            <button type="button" class="btn btn-secondary" title="Quick Shop">
+                                <i class="fa fa-eye" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-secondary" title=" Add to wishlist">
+                                <i class="fa fa-heart" aria-hidden="true"></i></button>
+                            <button data-product={{product.id}} data-action="add" class="btn update-cart btn-secondary" type="button" title="Add to cart">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-bottom text-center">
+                        <div>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </div>
+                        
+                        <h3>{{ product.name }}</h3>
+                        <h5>{{ product.price|floatformat:2 }}</h5>
+                    </div>
+                    
+                </div>
+                     
+                     
+                     
+                 {% endif %}
+         {% endfor %}
+         
+            
+        </div>
+        
+        
+        
+        
+    </div>
+   
+     
+     
+{% endblock %}

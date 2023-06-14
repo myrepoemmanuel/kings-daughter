@@ -18,7 +18,7 @@
                 <img src="{{ article.authorImage }}" alt="">
             </div>
             <h3>
-                By : {{ article.author }} | {{ article.date_added }} UTC 
+                By : {{ article.author }} | {{ article.date_added }} EAT 
             </h3>
 
             <span class="social_icons">
@@ -31,13 +31,44 @@
         </div>
 
         <div>
-            <p style="font-style: italic;font-weight: 600;">Last update on {{article.date_modified}} UTC</p>
+            <p style="font-style: italic;font-weight: 600;">Last update on {{article.date_modified}} EAT</p>
         </div>
 
         <div id="the_articles" class="the_articles">
             <p>
                 {{ article.article }}
             </p>
+        </div>
+
+        <div class="comment_section">
+            <h2 style="font-family: 'Playfair Display'; text-transform: uppercase;">Comments</h2>
+            <form id="comment_form" action="{% url 'comments' article.title|slugify %}">
+                <div class="comm_input">
+                    <img src="{% static 'img/icons8-user.png' %}" alt="">
+                    <textarea id="my_comment" name="my_comment" placeholder="Add a comment"></textarea>
+                    <input type="submit" value="Comment">
+                </div>
+            </form>
+            <div class="all_comments">
+                {% for comm in filtered_comments %}
+                <div class="each_comment">
+                    
+                        <div class="child-1">
+                            <span>{{comm.name}},</span>
+                            <span>{{comm.date_joined}}</span>
+                        </div>
+                        <div class="child-2">
+                            <p>
+                                {{comm.comment}}
+                            </p>
+                        </div>
+                        <!-- <div class="child-3">
+                            <a href="#">Reply</a>
+                        </div> -->
+                    
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
         <img id="image1" class="hide" src="{{ article.image1 }}" alt="">
@@ -103,6 +134,10 @@
     let the_articles = document.getElementById('the_articles');
     let the_articles_child = the_articles.children[0];
     let myArray = the_articles_child.innerHTML.split(" ");
+
+    document.getElementById("comment_form").addEventListener("submit", function(){
+
+    })
     
 
     for(let i=0; i <myArray.length;i++){

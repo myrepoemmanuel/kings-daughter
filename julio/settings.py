@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['kingsdaughter.pythonanywhere.com','kings-daughter.herokuapp.com','127.0.0.1']
 
@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'storages',
+    'store',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -131,6 +133,8 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+TIME_ZONE = 'Africa/Nairobi'
+
 USE_I18N = True
 
 USE_L10N = True
@@ -144,10 +148,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "blog/static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'blog/static'),
+    os.path.join(BASE_DIR, 'store/static'),
+    
+)
 
 MEDIA_URL = '/media/'
 

@@ -1,0 +1,148 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+    
+     <!--Section: Contact v.2-->
+<section class="mb-4" style="width: 85%; margin: auto; color: white; display: grid; place-items: center;">
+
+  <!--Section heading-->
+  <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+  <!--Section description-->
+  <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. <br/> team will come back to you within
+      a matter of hours to help you.</p>
+
+  <div class="row">
+
+      <!--Grid column-->
+      <div class="col-md-9 mb-md-0 mb-5">
+          <form id="form" name="contact-form">
+
+              <!--Grid row-->
+              <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+                      <div class="md-form mb-0">
+                          <input type="text" id="name" name="name" class="form-control">
+                          <label for="name" class="">Your name</label>
+                      </div>
+                  </div>
+                  <!--Grid column-->
+
+                  <!--Grid column-->
+                  <div class="col-md-6">
+                      <div class="md-form mb-0">
+                          <input type="text" id="email" name="email" class="form-control">
+                          <label for="email" class="">Your email</label>
+                      </div>
+                  </div>
+                  <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+              <!--Grid row-->
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="md-form mb-0">
+                          <input type="text" id="subject" name="subject" class="form-control">
+                          <label for="subject" class="">Subject</label>
+                      </div>
+                  </div>
+              </div>
+              <!--Grid row-->
+
+              <!--Grid row-->
+              <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-12">
+
+                      <div class="md-form">
+                          <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                          <label for="message">Your message</label>
+                      </div>
+
+                  </div>
+              </div>
+              <!--Grid row-->
+              <div class="text-center text-md-left">
+                <a class="btn btn-primary" id="send-form" type="submit">Send</a>
+               </div>
+
+          </form>
+
+          
+          <div class="status"></div>
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-3 text-center">
+          <ul class="list-unstyled mb-0">
+              <li><i class="fas fa-map-marker-alt fa-2x"></i>
+                  <p>Nairobi, Kenya, Africa</p>
+              </li>
+
+              <li><i class="fas fa-phone mt-4 fa-2x"></i>
+                  <p>+254 7123456789</p>
+              </li>
+
+              <li><i class="fas fa-envelope mt-4 fa-2x"></i>
+                  <p>Ecom201@gmail.com</p>
+              </li>
+          </ul>
+      </div>
+      <!--Grid column-->
+
+  </div>
+
+</section>
+
+<script>
+    var form = document.getElementById('form');
+    document.getElementById('send-form').addEventListener('click', function(){ 
+        submitFormData()       
+    })    
+
+    function submitFormData(){
+        
+        var contactInfo = {
+            'name': form.name.value,
+            'email': form.email.value,
+            'subject': form.subject.value,
+            'message': form.message.value,
+            
+        }
+        
+        
+        var url = '/processContact/';
+
+                fetch(url, {
+                    method:'POST',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'X-CSRFToken': csrftoken,
+                    },
+                    body:JSON.stringify({'contactInfo': contactInfo,})
+
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('success:',data);
+                    alert('contact sent');
+                    // deleting the cart cookie on complete transaction
+                    cart = {}
+                    document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+
+                    window.location.href = "{% url 'store' %}"
+                })
+        
+        
+    }
+</script>
+<!--Section: Contact v.2-->
+{% endblock %}

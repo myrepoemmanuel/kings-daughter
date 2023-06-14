@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WelcomeInformation, WhereToStart, Subscribers, BlogArticles, Categories, About, BlogAim, ContactUs
+from .models import Comments, WelcomeInformation, WhereToStart, Subscribers, BlogArticles, Categories, About, BlogAim, ContactUs
 
 # Register your models here.
 admin.site.register(Categories)
@@ -10,6 +10,7 @@ admin.site.register(BlogArticles)
 
 admin.site.register(About)
 admin.site.register(BlogAim)
+admin.site.register(Comments)
 
 
 class ContactUsAdmin(admin.ModelAdmin):

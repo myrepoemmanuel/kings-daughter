@@ -1,0 +1,88 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+<main class="main cart-items">
+    <div class="container cart-page">
+        <table class="cart_table">
+            <!-- <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+
+            </tr> -->
+            
+                {% for item in items %}
+
+                <tr>
+
+                    <td>
+
+                        <div class="cart-info">
+                            <img src="{{ item.product.imageURL }}" alt="">
+                            <div>
+                                <p>
+                                    {{ item.product.name|capfirst }}
+                                </p>
+                                <small>
+                                    Price:Ksh {{item.product.price}}
+                                </small>
+                                <br>
+                                <div class="q_btns">
+                                    <a data-product="{{item.product.id}}" data-action="add" class="update-cart add_q">Add</a>
+                                    <a data-product="{{item.product.id}}" data-action="remove" class="update-cart remove_q">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="text" value="{{item.quantity}}" disabled></td>
+                    <td> Ksh {{ item.get_total }}</td>
+                </tr>
+                {% endfor %}
+    
+
+            
+
+        </table>
+
+        <div class="total-price">
+
+            <table class="total_checkout">
+                <tr>
+                    <td colspan="2" style="padding-bottom: 20px; border-bottom: 0.5px rgb(77, 76, 76) dashed; width: 100%;">TOTAL</td>
+                    
+                </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>Ksh {{ order.get_cart_total | floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>Items</td>
+                    <td>{{ order.get_cart_items }}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="cart_bottom">
+            <!-- cart btns.......... -->
+            <div class="cart_content_nav">
+                
+                <a href="{% url 'store' %}" class="btn btn-white" style="justify-self: flex-start; color: white; background-color: rgba(0, 0, 0, .25);">
+                    <i class="fa fa-arrow-left" style="padding-right: 3px;"></i> Continue shopping
+                </a>
+                <a href="{% url 'checkout' %}" class="btn btn-primary pull-right" style="background-color: #075907b0; border: none;">
+                    <i class="fa fa fa-shopping-cart"></i> Checkout
+                </a>
+
+            </div>
+
+            
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

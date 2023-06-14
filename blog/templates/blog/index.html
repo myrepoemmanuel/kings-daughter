@@ -242,45 +242,6 @@
 
 
 
-    var form = document.getElementById('subs-form')
-
-    form.addEventListener('submit', function(e){
-        e.preventDefault()
-    })
-
-    document.getElementById('join-list').addEventListener('click', function(e){
-        submitFormData()
-    })
-    function submitFormData(){
-        var SubscriberData = {
-            'name': form.username.value,
-            'email': form.email.value,
-        }
-
-
-        var url = '/process_subscriber/';
-
-                fetch(url, {
-                    method:'POST',
-                    headers: {
-                        'Content-Type':'application/json',
-                        'X-CSRFToken': csrftoken,
-                    },
-                    body:JSON.stringify({'SubscriberData': SubscriberData,})
-
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // console.log('success:',data);
-                    alert('Subscribed Successfully');
-                    form.username.value = "";
-                    form.email.value = "";
-
-                })
-
-
-    }
-
 
 
 

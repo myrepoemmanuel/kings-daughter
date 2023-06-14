@@ -1,0 +1,48 @@
+{% extends 'store/base.html' %}
+
+{% load static %}
+{% block content %}
+   
+   <style>
+       body{
+           height: 50vh;
+       }
+    
+        
+        
+    </style>
+    <section class="login-cont-box">
+        
+        
+   
+    <div class="login-cont">
+       <h1 style="color: white;">LOG IN</h1>
+       <hr style="margin: 15px 0">
+        <form method="post">
+          {% csrf_token %}
+          
+           {% for field in form %}
+             
+                 {{ field.label_tag }}<br>
+                 
+                 {{ field }}<br>
+                 
+
+                  <hr style="margin: 15px 0">
+             
+            {% endfor %}
+            <div style="position: relative; display: grid; grid-template-columns: 1fr 1fr; place-items: center; width: 85%;">
+            
+            <button class="success-btn2" style="justify-self: left;" type="submit">LOG IN</button>
+            
+            <p style="color:burlywood">New user? <a style="color: white; font-weight: 700;" href="{% url 'users:site-reg' %}">Sign Up</a></p>
+            
+            </div>
+            
+        </form>
+    </div>
+ </section>
+    
+    
+    
+{% endblock %}
