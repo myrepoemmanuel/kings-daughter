@@ -1,11 +1,11 @@
-{% extends 'store/base.html' %}
+{% extends 'blog/main.html' %}
 {% load static %}
 {% block content %}
-<div class="checkout-container">
+<div class="pg-cont checkout-container">
     
-    <div style="box-shadow: -5px -5px 6px grey;" class="child-1">
+    <div class="child-1">
        
-        <div style="padding: 0 1px; margin-top: 0;" class="addr-form-det">   
+        <div class="addr-form-det checkout_header">   
              <h2>Shipping Information</h2>
             
         </div>
@@ -13,65 +13,47 @@
          
         <div id="form-det-1">
             <div class="addr-form-det">   
-                 <input class="box-inputs" name="fname" type="text" placeholder="Full name" required>
+                 <input class="box-inputs" name="fname" type="text" placeholder="Full name">
 
             </div>
 
             <div class="addr-form-det">
-                <input class="box-inputs" name="email" type="text" placeholder="email" required>
+                <input class="box-inputs" name="email" type="text" placeholder="email">
             </div>
 
             <div class="addr-form-det">
-                <input class="box-inputs" name="phone" type="text" placeholder="Phone Number" required>
+                <input class="box-inputs" name="phone" type="text" placeholder="Phone Number">
             </div>
 
             <div class="addr-form-det">
-                <input class="box-inputs" name="address" type="text" placeholder="Address" required>
+                <input class="box-inputs" name="address" type="text" placeholder="Address">
             </div>
 
-            <div class="addr-form-det">
-                <input class="box-inputs" name="postalcode" type="text" placeholder="Postal Code" required>
+            <div class="addr-form-det" style="grid-column: span 2;">
+                <input class="box-inputs" name="postalcode" type="text" placeholder="Postal Code">
             </div>
 
             <div style="border-bottom: none;" class="addr-form-det">
-                <input style="margin-bottom: 20px;" class="btn btn-success pull-right ship-btn" type="submit" value="Submit">
+                <input class="ship-btn" type="submit" value="Submit">
             </div>
         </div>
     <!--        hidden items in checkout page-->
     
     
-<!--
-            <div id="payment" class="addr-form-det hide-item">
-               <h3 style="color: black;">Proceed to Enter Mpesa pin on the phone<br>Registered with the number you input below</h3>
-
-            </div>
-
-            <div id="payment-1" class="addr-form-det hide-item">
-                <input class="box-inputs" name="payphone" type="text" placeholder="Phone number">
-                <br>
-                <h4 style="color: black;"><strong>Total:Ksh {{ order.get_cart_total }}</strong></h4>
-            </div>
-
-            <div style="border-bottom: none;" id="payment-2" class="addr-form-det hide-item">
-                <button id="make-payment" style="margin-bottom: 20px;" class="success-btn ship-btn">Pay</button>
-            </div>
--->
-    
            
             <div id="payment" class="addr-form-det hide-item">
-               <h4 style="color: black;">Proceed to pay to till no. 12345 amd<br> Enter Mpesa CODE from the payment below</h4>
+               <h5 style="color: black;">Proceed to pay to till no. 12345 amd<br> Enter Mpesa CODE from the payment below</h5>
 
             </div>
 
             <div id="payment-1" class="addr-form-det hide-item">
-                <input id="mpesa_code" class="box-inputs" name="payphone" type="text" placeholder="MPESA CODE">
+                <input style="height: 40px;margin-block: 8px;" class="box-inputs" name="payphone" type="text" placeholder="MPESA CODE">
                 <br>
                 <h4 style="color: black;"><strong>Total:Ksh {{ order.get_cart_total }}</strong></h4>
             </div>
 
             <div style="border-bottom: none;" id="payment-2" class="addr-form-det hide-item">
-                <button id="make-payment" style="margin-bottom: 20px;" class="btn btn-success pull-right ship-btn">Validate</button>
-                <a id="go-back" style="margin-bottom: 20px; background-color: rgba(0, 0, 0, .25);" class="btn btn-success">Go Back</a>
+                <button id="make-payment" style="margin-bottom: 20px;" class="ship-btn btn btn-primary pull-right" style="background-color: #075907b0; border: none;">Validate</button>
             </div>
 
     
@@ -82,12 +64,14 @@
             </form>
     </div>
     
-    <div style="box-shadow: -5px -5px 6px grey;" class="child-2">
+    <div class="child-2">
         
         <div class="addr-form-det">
             
-            <a style="text-decoration: none;" class="btn btn-success pull-right" href="{% url 'cart' %}">Back to Cart</a>
-            
+            <!-- <a style="padding: 10px; text-decoration: none; background-color:rgb(158, 145, 145);" class="success-btn" href="{% url 'cart' %}">Back to Cart</a> -->
+            <a href="{% url 'cart' %}" class="btn btn-primary pull-right" style="background-color: #075907b0; border: none;">
+                <i class="fa fa fa-shopping-cart"></i> Back to Cart
+            </a>
         </div>
         
         <div class="addr-form-det">
@@ -116,8 +100,8 @@
         {% endfor %}
         <div class="addr-form-det-4">
             
-            <h4 style="color: black;">Items: {{order.get_cart_items}}</h4>
-            <h4 style="margin-bottom: 10px; color: black;">Total: Ksh{{order.get_cart_total|floatformat:2}}</h4>
+            <h3 style="color: black;">Items: {{order.get_cart_items}}</h3>
+            <h3 style="margin-bottom: 10px; color: black;">Total: Ksh{{order.get_cart_total|floatformat:2}}</h3>
             
         </div>
         
@@ -128,12 +112,8 @@
 <script type="text/javascript">
     
     var total = '{{order.get_cart_total}}'
-
-    
-
     
     var form = document.getElementById('form')
-    var mpesa_code = document.getElementById("mpesa_code");
     form.addEventListener('submit', function(e){
         e.preventDefault()
         console.log('Form Submitted...')
@@ -141,35 +121,14 @@
         document.getElementById('payment').classList.remove("hide-item");
         document.getElementById('payment-1').classList.remove("hide-item");
         document.getElementById('payment-2').classList.remove("hide-item");
-        mpesa_code.required = true;
-    })
-
-    // back btn in payment functionality..........
-    var back_btn = document.getElementById('go-back')
-    
-    back_btn.addEventListener("click", function(){
-        console.log("back")
-        mpesa_code.required = false;
-        document.getElementById('form-det-1').classList.remove("hide-item");
-        document.getElementById('payment').classList.add("hide-item");
-        document.getElementById('payment-1').classList.add("hide-item");
-        document.getElementById('payment-2').classList.add("hide-item");
     })
     
     
 
+    
     document.getElementById('make-payment').addEventListener('click', function(e){
-        
-        if (mpesa_code.value.length < 8){
-            alert("code is too short")
-        }else{
-            submitFormData()
-        }
-                    
-    })    
-    
-
-    
+        submitFormData()
+    })
     
     
     
@@ -191,7 +150,7 @@
         }
         
         
-        var url = '/process_order/';
+        var url = 'process_order/';
 
                 fetch(url, {
                     method:'POST',
