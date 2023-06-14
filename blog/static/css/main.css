@@ -795,8 +795,8 @@ header{
     border-radius: 5px;
 }
 
-.footer .random_child a p{
-    margin: 0;
+.footer .random_child a > p{
+    margin: 0 !important;
 }
 
 .footer .random_child a:hover{
