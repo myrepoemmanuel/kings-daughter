@@ -10,6 +10,9 @@ a{
     outline: none;
 }
 
+.h3, h3 {
+  font-size: 18.72px !important;
+}
 
 body{
     /*background-image: url("/static/img/pexels-kaboompics-com-6444.jpg");*/

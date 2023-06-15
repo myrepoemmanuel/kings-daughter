@@ -1,7 +1,7 @@
 import json
 from json import dumps
 from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import About, BlogAim, BlogArticles, Comments, ContactUs, Subscribers, WelcomeInformation, WhereToStart, Categories
 from django.urls import reverse
 # Create your views here.
@@ -80,7 +80,10 @@ def blogComment(request, *args, **kwargs):
         'latest_articles':latest_articles,
         'filtered_comments':filtered_comments
     }
-    return render(request, 'blog/article.html', context)
+
+    # return render(request, 'blog/article.html', context)
+    response = redirect('/redirect-success/')
+    return response
 
 
 
